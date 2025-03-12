@@ -1,5 +1,8 @@
 <template>
   <div class="person">
+    <ul>
+      <li v-for="item in list" :key="item.id">{{item.id}}-{{item.name}}-{{item.age}}</li>
+    </ul>
 
   </div>
 </template>
@@ -11,28 +14,22 @@
 </script>
 
 <script lang="ts" setup>
-  import {type PersonIntetface} from '@/types'
+  import {type Persons } from '@/types';
+  import {defineProps, withDefaults} from 'vue'
 
-  let person:PersonIntetface = {
-    id:'1234214',
-    name: 'bob',
-    age: 12
-  }
+  //  接收外部(父组件)传递的变量
+  // defineProps(['xx'])
 
-  let personList:Array<PersonIntetface> = [
-    {
-    id:'1234214',
-    name: 'bob',
-    age: 12
-    },
-    {
-    id:'1234214',
-    name: 'bob',
-    age: 12
-    }
-  ]
+  //  param为一个对象(类似map)
+  // defineProps(['list'])
 
- 
+  //  接收时限制类型 + 默认值
+  withDefaults(defineProps<{list?:Persons}>(), {
+    list: ()=> [{id:'1', name:'default', age:1}]
+  })
+
+
+
 </script>
 
 <style scoped>

@@ -10,8 +10,8 @@
 
 
 <script lang="ts">
-//  vue2 选项式api
-    export default {}
+// //  vue2 选项式api
+//     export default {}
 </script>
 
 <script lang="ts" setup>
