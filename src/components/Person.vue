@@ -1,9 +1,10 @@
 <template>
   <div class="person">
-    <ul>
-      <li v-for="item in list" :key="item.id">{{item.id}}-{{item.name}}-{{item.age}}</li>
-    </ul>
-
+      <h2>sum: {{sum}}</h2>
+      <button @click="add">sum</button>
+      <hr>
+      <img v-for="(dog, index) in dogList" :src="dog" :key="index">
+      <button @click="getDog">more dog</button>
   </div>
 </template>
 
@@ -14,21 +15,13 @@
 </script>
 
 <script lang="ts" setup>
-  import {type Persons } from '@/types';
-  import {defineProps, withDefaults} from 'vue'
-
-  //  接收外部(父组件)传递的变量
-  // defineProps(['xx'])
-
-  //  param为一个对象(类似map)
-  // defineProps(['list'])
-
-  //  接收时限制类型 + 默认值
-  withDefaults(defineProps<{list?:Persons}>(), {
-    list: ()=> [{id:'1', name:'default', age:1}]
-  })
-
-
+ 
+  import useSum from '@/hooks/useSum'
+  import useDog from '@/hooks/useDog'
+ 
+  const {sum, add} = useSum()
+  const {dogList, getDog} = useDog()
+  
 
 </script>
 
@@ -40,5 +33,9 @@
 
   button {
       margin: 0 5px;
+  }
+
+  img {
+    height: 100px;
   }
 </style>
