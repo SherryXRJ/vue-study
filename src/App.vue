@@ -5,21 +5,25 @@
     <h2 class="title">Vue路由测试</h2>
     <!-- 导航区 -->
     <div class="navigate">
-      <a href="#">Tab1</a>
-      <a href="#">Tab2</a>
-      <a href="#">Tab3</a>
+
+      <!-- RouterLink to 字符串模式 -->
+      <RouterLink to="/home" active-class="actice">home</RouterLink>
+
+      <!-- RouterLink to 对象模式 -->
+      <RouterLink :to="{name:'newsName'}" active-class="actice">news</RouterLink>
+      <RouterLink :to="{path:'/about'}" active-class="actice">about</RouterLink>
      </div>
 
     <!-- 展示区 -->
     <div class="main-content">
-      根据路由切换展示
+      <RouterView></RouterView>
     </div>
   </div>
 
 </template>
 
 <script lang="ts" setup>
-
+  import {RouterView, RouterLink} from 'vue-router'
 </script>
 
 <style>
@@ -53,7 +57,7 @@
     font-size: 18px;
     letter-spacing: 5px;
   }
-  .navigate a.xiaozhupeiqi {
+  .navigate a.actice {
     background-color: #64967E;
     color: #ffc268;
     font-weight: 900;
