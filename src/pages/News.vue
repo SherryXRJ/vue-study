@@ -7,7 +7,7 @@
         <!-- <RouterLink :to="`/news/detail?id=${news.id}&title=${news.title}&content=${news.content}`">{{news.title}}</RouterLink> -->
 
         <!-- 传参方式2: 对象传参 -->
-        <RouterLink :to="{
+        <!-- <RouterLink :to="{
           //  name或path属性都可
           name:'detailName',
           // path: '/news/detail', 
@@ -16,7 +16,23 @@
             title: news.title,
             content: news.content
           }
+        }">{{news.title}}</RouterLink> -->
+
+        <!-- params传参 方式1-->
+        <!-- <RouterLink :to="`/news/detail/${news.id}/${news.title}/${news.content}`">{{news.title}}</RouterLink> -->
+
+        <!-- params传参 方式2-->
+        <RouterLink :to="{
+          //  必须使用name 不能用path
+          name:'detailName',
+          params:{
+            id: news.id,
+            title: news.title,
+            content: news.content
+            //  无法传数组类型
+          }
         }">{{news.title}}</RouterLink>
+
       </li>
     </ul>
     <!-- 展示区 -->

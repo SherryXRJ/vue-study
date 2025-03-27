@@ -26,13 +26,23 @@ const router = createRouter(
         path:'/news',
         component:News,
         //  路由嵌套 子级路由
-        children:[
-          {
-            name:'detailName',
-            //  子级路由不需要/
-            path:'detail',
-            component:Detail
-          }
+        // children:[
+        //   {
+        //     name:'detailName',
+        //     //  子级路由不需要/
+        //     path:'detail',
+        //     component:Detail
+        //   }
+
+        //  param传参
+          children:[
+            {
+              name:'detailName',
+              //  子级路由不需要/
+              //  param传参 设置占位符
+              path:'detail/:id/:title/:content',
+              component:Detail
+            }
         ]
       },
       {
