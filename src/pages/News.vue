@@ -3,7 +3,20 @@
     <!-- 导航区 -->
     <ul>
       <li v-for="news in newsList" :key="news.id">
-        <RouterLink to="/news/detail?id=">{{news.title}}</RouterLink>
+        <!-- 传参方式1: 嵌套route 传递参数 -->
+        <!-- <RouterLink :to="`/news/detail?id=${news.id}&title=${news.title}&content=${news.content}`">{{news.title}}</RouterLink> -->
+
+        <!-- 传参方式2: 对象传参 -->
+        <RouterLink :to="{
+          //  name或path属性都可
+          name:'detailName',
+          // path: '/news/detail', 
+          query: {
+            id: news.id,
+            title: news.title,
+            content: news.content
+          }
+        }">{{news.title}}</RouterLink>
       </li>
     </ul>
     <!-- 展示区 -->
@@ -18,10 +31,10 @@
   import {RouterLink, RouterView} from 'vue-router';
 
   const newsList = reactive([
-    {id:'id1', title:'News1',conent:'QQQQQQQQQQQ'},
-    {id:'id2', title:'News2',conent:'AAAAAAAAAAA'},
-    {id:'id3', title:'News3',conent:'CCCCCCCCCCC'},
-    {id:'id4', title:'News4',conent:'DDDDDDDDDDD'},
+    {id:'id1', title:'News1',content:'QQQQQQQQQQQ'},
+    {id:'id2', title:'News2',content:'AAAAAAAAAAA'},
+    {id:'id3', title:'News3',content:'CCCCCCCCCCC'},
+    {id:'id4', title:'News4',content:'DDDDDDDDDDD'},
   ])
 </script>
 

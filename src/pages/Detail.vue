@@ -1,8 +1,9 @@
 <template>
   <ul class="news-list">
-    <li>编号：{{route.query.query1}}</li>
-    <li>标题：{{route.query.query2}}</li>
-    <li>内容：xxx</li>
+    <!-- 从url query参数中取数 -->
+    <li>编号：{{query.id}}</li>
+    <li>标题：{{query.title}}</li>
+    <li>内容：{{query.content}}</li>
   </ul>
 </template>
 
@@ -10,8 +11,13 @@
   //  useRoute是一个 hooks
   import {useRoute} from 'vue-router'
 
+  import {toRefs} from 'vue';
+
   const route = useRoute()
   console.log(route);
+
+  //  解构赋值 
+  let {query} = toRefs(route) //  失去响应式 需要用toRefs函数
 
 
 </script>
