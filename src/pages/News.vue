@@ -23,9 +23,9 @@
 
         <!-- params传参 方式2-->
         <RouterLink :to="{
-          //  必须使用name 不能用path
+          //  params必须使用name 不能用path
           name:'detailName',
-          params:{
+          query:{
             id: news.id,
             title: news.title,
             content: news.content

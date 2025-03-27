@@ -39,9 +39,21 @@ const router = createRouter(
             {
               name:'detailName',
               //  子级路由不需要/
-              //  param传参 设置占位符
-              path:'detail/:id/:title/:content',
-              component:Detail
+              
+              path:'detail',
+              component:Detail,
+              //  将路由收到所有params参数 传递到props   path:'detail/:id/:title/:content'
+              // props: true
+
+              //  函数写法参数 针对query传参
+              props(route){
+                return route.query
+              }
+
+              //  对象写法 (写死)
+              // props:{
+                
+              // }
             }
         ]
       },
