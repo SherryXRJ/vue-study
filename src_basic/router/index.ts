@@ -61,6 +61,10 @@ const router = createRouter(
         name:'aboutName',
         path:'/about',
         component:About
+      },
+      {
+        path:'/',
+        redirect:'/home'
       }
     ]
   }

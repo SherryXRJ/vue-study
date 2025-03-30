@@ -3,6 +3,8 @@
     <!-- 导航区 -->
     <ul>
       <li v-for="news in newsList" :key="news.id">
+        <button @click="showNewsDetail(news)">{{news.title}}</button>
+
         <!-- 传参方式1: 嵌套route 传递参数 -->
         <!-- <RouterLink :to="`/news/detail?id=${news.id}&title=${news.title}&content=${news.content}`">{{news.title}}</RouterLink> -->
 
@@ -44,7 +46,9 @@
 
 <script setup lang="ts" name="News">
   import {reactive} from 'vue';
-  import {RouterLink, RouterView} from 'vue-router';
+  import {RouterLink, RouterView, useRouter} from 'vue-router';
+
+  const router = useRouter()
 
   const newsList = reactive([
     {id:'id1', title:'News1',content:'QQQQQQQQQQQ'},
@@ -52,6 +56,20 @@
     {id:'id3', title:'News3',content:'CCCCCCCCCCC'},
     {id:'id4', title:'News4',content:'DDDDDDDDDDD'},
   ])
+
+
+  function showNewsDetail(news:any){
+    router.push({
+          //  params必须使用name 不能用path
+          name:'detailName',
+          query:{
+            id: news.id,
+            title: news.title,
+            content: news.content
+            //  无法传数组类型
+          }
+        })
+  }
 </script>
 
 <style scoped>
