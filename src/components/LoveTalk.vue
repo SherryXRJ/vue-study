@@ -13,20 +13,17 @@
   import { nanoid } from 'nanoid';
   import { useLoveTalkStore } from '@/store/LoveTalk';
 
-  // let talkList = reactive([
-  //   {id:'1', title:'title1'},
-  //   {id:'2', title:'title2'},
-  //   {id:'3', title:'title3'},
-  //   {id:'4', title:'title4'},
-  //   {id:'5', title:'title5'},
-  // ])
-
   const loveTalkStore = useLoveTalkStore()
 
-  async function getTalk(){
-    let reuslt = await axios.get('https://api.uomg.com/api/rand.qinghua?format=json')
-    let obj = {id: nanoid(), title:reuslt.data.content}
-    loveTalkStore.talkList.unshift(obj)
+  //  监听数据的变化
+  loveTalkStore.$subscribe((mutate, state) => {
+      console.log('loveTalkStore中的保存的数据发生了变化', mutate, state);
+      localStorage.setItem('list', JSON.stringify(state.talkList))
+  })
+
+
+  function getTalk(){
+    loveTalkStore.getATalk()
   }
 </script>
 
